@@ -51,17 +51,17 @@
 }
 
 .board {
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     --line-offset: calc(var(--gap) / 2);
     --line-thickness: 2px;
     display: grid;
-    grid-template-rows: repeat(8,max(1fr,5rem));
-    grid-template-columns: 20rem;
+    grid-template-rows: repeat(8,4rem);
+    grid-template-columns: 16rem;
     overflow: hidden;
     gap: 0.1rem;
 }
 
-p {
+.info {
     overflow: hidden;
     max-width: 75ch;
 }
