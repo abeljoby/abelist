@@ -70,6 +70,9 @@
 .tile {
     background-color: gray;
     position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .tile::after {
@@ -79,10 +82,11 @@
     inset-block-start: calc(var(--line-offset) * -1);
 }
 
-.guesser {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+.pick {
+    background-color: silver;
+    border-radius: 100%;
+    width: calc(60%/4);
+    height: 60%;
 }
 
 .picker {
@@ -94,7 +98,17 @@
 }
 
 .answer {
+    padding: 5px;
     background-color: gray;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+}
+
+.answer-pin {
+    background-color: silver;
+    border-radius: 100%;
 }
 
 #confirm-container {
