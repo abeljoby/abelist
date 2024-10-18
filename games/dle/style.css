@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .page {
@@ -47,19 +47,25 @@
     display: flex;
     justify-content: center;
     gap: 2rem;
-    padding: 5vw 10vw;
+    padding: 5vh 5vw;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 1rem; */
 }
 
 .board {
     flex: 0 0 auto;
-    --line-offset: calc(var(--gap) / 2);
-    --line-thickness: 2px;
     display: grid;
     grid-template-rows: repeat(8,4rem);
     grid-template-columns: 16rem 4rem;
     grid-auto-flow: column;
     overflow: hidden;
     gap: 0.1rem;
+    border-radius: 10px;
 }
 
 .info {
@@ -75,26 +81,23 @@
     align-items: center;
 }
 
-.tile::after {
-    inline-size: 100vw;
-    block-size: var(--line-thickness);
-    inset-inline-start: 0;
-    inset-block-start: calc(var(--line-offset) * -1);
-}
-
 .pick {
-    background-color: silver;
+    --bg-color: silver;
+    background: radial-gradient(circle, var(--bg-color), #666666);
+    background: radial-gradient(circle at 30% 30%, 
+    color-mix(in srgb, var(--bg-color), white 30%),
+    var(--bg-color) 40%,
+    color-mix(in srgb, var(--bg-color), black 40%) 70%,
+    color-mix(in srgb, var(--bg-color), black 80%) 100%
+    );
     border-radius: 100%;
+    border: 2px solid rgb(102, 102, 102);
     width: calc(60%/4);
     height: 60%;
 }
 
 .picker {
-    background-color: silver;
     cursor: pointer;
-    border-radius: 100%;
-    width: calc(60%/4);
-    height: 60%;
 }
 
 .answer {
@@ -106,9 +109,21 @@
     gap: 5px;
 }
 
-.answer-pin {
-    background-color: silver;
+.answer-hole {
+    background-color: rgb(101, 101, 101);
     border-radius: 100%;
+    border: 2px solid rgb(80, 80, 80);
+}
+
+.answer-pin {
+    --bg-color: silver;
+    background: radial-gradient(circle, var(--bg-color), #666666);
+    background: radial-gradient(circle at 30% 30%, 
+    color-mix(in srgb, var(--bg-color), white 30%),
+    var(--bg-color) 40%,
+    color-mix(in srgb, var(--bg-color), black 40%) 70%,
+    color-mix(in srgb, var(--bg-color), black 80%) 100%
+    );
 }
 
 #confirm-container {
@@ -124,6 +139,21 @@
     width: 80%;
     height: 80%;
     border-radius: 30%;
+}
+
+.tooltip {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 20rem;
+}
+
+.tip {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    border: none;
+    flex: 0 0 40px;
 }
 
 .footer {

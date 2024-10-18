@@ -9,7 +9,8 @@ class guess {
     }
     changeColor() {
         this.color = (this.color+1)%colors.length;
-        this.button.style.backgroundColor = colors[this.color];
+        this.button.style.setProperty("--bg-color",colors[this.color]);
+        // this.button.style.backgroundColor = colors[this.color];
     }
 }
 
@@ -38,7 +39,8 @@ function makeGuess() {
     let flag = 0;
     for (g of guesses) {
         if(g.color === -1) {
-            console.log("Please select a color!");
+            const warning = document.querySelector(".warning");
+            warning.textContent = "Please select a colour!";
             return;
         }
     }
@@ -48,13 +50,16 @@ function makeGuess() {
     for([i,g] of guesses.entries()) {
         const pick = document.createElement("div");
         pick.classList.add("pick");
-        pick.style.backgroundColor = colors[g.color];
+        // pick.style.backgroundColor = colors[g.color];
+        pick.style.setProperty("--bg-color",colors[g.color]);
         tile.appendChild(pick);
         if(g.color === +answer[i]) {
-            pins.childNodes.item((2*i)+1).style.backgroundColor = 'black';
+            pins.childNodes.item((2*i)+1).classList.add("answer-pin");
+            pins.childNodes.item((2*i)+1).style.setProperty("--bg-color","black");
         }
         else if(answer.includes(g.color)) {
-            pins.childNodes.item((2*i)+1).style.backgroundColor = 'white';
+            pins.childNodes.item((2*i)+1).classList.add("answer-pin");
+            pins.childNodes.item((2*i)+1).style.setProperty("--bg-color","white");
         }
     }
     guessno += 1;
