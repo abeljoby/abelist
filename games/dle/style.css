@@ -85,7 +85,7 @@
     --bg-color: gray;
     background: radial-gradient(circle, var(--bg-color), #666666);
     border-radius: 100%;
-    border: 3px solid rgb(102, 102, 102);
+    border: 4px solid rgb(102, 102, 102);
     width: calc(65%/4);
     height: 65%;
 }
@@ -99,7 +99,7 @@
     color-mix(in srgb, var(--bg-color), black 80%) 100%
     );
     border-radius: 100%;
-    border: 1px solid dimgray;
+    border: 2px solid dimgray;
     width: calc(65%/4);
     height: 65%;
 }
