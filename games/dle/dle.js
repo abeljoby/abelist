@@ -32,6 +32,16 @@ let answer = [];
 
 confirm.addEventListener("click",(e) => makeGuess());
 
+const getFormattedDate = () => {
+    const date = new Date();
+    
+    const day = date.getDate(); // Day of the month (1-31)
+    const month = date.toLocaleString('default', { month: 'long' }); // Full month name
+    const year = date.getFullYear(); // Year (e.g., 2024)
+
+    return `${day} ${month} ${year}`;
+};
+
 function startGame() {
     for(let i=0;i<4;i++) {
         let colorCode = Math.floor(colors.length*Math.random());
@@ -47,7 +57,7 @@ function shufflePins(array) {
     }
 }
 
-function getFeedback(secretCode, guess) {
+function getResults(secretCode, guess) {
     let blackPegs = 0;
     let whitePegs = 0;
   
@@ -91,9 +101,13 @@ function makeGuess() {
         pick.classList.add("picked");
         pick.style.setProperty("--bg-color",colors[g.color]);
         tile.appendChild(pick);
+        g.button.classList.toggle("pick");
+        g.button.classList.toggle("picked");
+        g.button.style.setProperty("--bg-color","gray");
+        g.color = -1;
     }
 
-    let feedback = getFeedback(answer,guessedColors);
+    let feedback = getResults(answer,guessedColors);
     let i = 0;
     while(feedback.whitePegs > 0) {
         pinsOrder[i].classList.add("answer-pin");
@@ -109,16 +123,6 @@ function makeGuess() {
     guessno += 1;
 
 }
-
-const getFormattedDate = () => {
-    const date = new Date();
-    
-    const day = date.getDate(); // Day of the month (1-31)
-    const month = date.toLocaleString('default', { month: 'long' }); // Full month name
-    const year = date.getFullYear(); // Year (e.g., 2024)
-
-    return `${day} ${month} ${year}`;
-};
 
 const date = document.querySelector(".date");
 date.textContent = getFormattedDate();
