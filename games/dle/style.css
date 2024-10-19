@@ -54,7 +54,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* gap: 1rem; */
+    gap: 1rem;
 }
 
 .board {
@@ -84,16 +84,24 @@
 .pick {
     --bg-color: gray;
     background: radial-gradient(circle, var(--bg-color), #666666);
-    /* background: radial-gradient(circle at 30% 30%, 
+    border-radius: 100%;
+    border: 3px solid rgb(102, 102, 102);
+    width: calc(65%/4);
+    height: 65%;
+}
+
+.picked {
+    --bg-color: gray;
+    background: radial-gradient(circle at 30% 30%, 
     color-mix(in srgb, var(--bg-color), white 30%),
     var(--bg-color) 40%,
     color-mix(in srgb, var(--bg-color), black 40%) 70%,
     color-mix(in srgb, var(--bg-color), black 80%) 100%
-    ); */
+    );
     border-radius: 100%;
-    border: 2px solid rgb(102, 102, 102);
-    width: calc(60%/4);
-    height: 60%;
+    border: 1px solid dimgray;
+    width: calc(65%/4);
+    height: 65%;
 }
 
 .picker {
@@ -110,20 +118,21 @@
 }
 
 .answer-hole {
-    background-color: rgb(101, 101, 101);
+    --bg-color: gray;
+    background: radial-gradient(circle, var(--bg-color), #666666);
     border-radius: 100%;
-    border: 2px solid rgb(80, 80, 80);
+    border: 2px solid rgb(102, 102, 102);
 }
 
 .answer-pin {
     --bg-color: silver;
-    background: radial-gradient(circle, var(--bg-color), #666666);
     background: radial-gradient(circle at 30% 30%, 
     color-mix(in srgb, var(--bg-color), white 30%),
     var(--bg-color) 40%,
     color-mix(in srgb, var(--bg-color), black 40%) 70%,
     color-mix(in srgb, var(--bg-color), black 80%) 100%
     );
+    border: none;
 }
 
 #confirm-container {

@@ -9,8 +9,8 @@ class guess {
     }
     changeColor() {
         if(this.color === -1) {
-            this.button.style.setProperty("background","radial-gradient(circle at 30% 30%,color-mix(in srgb, var(--bg-color), white 30%),var(--bg-color) 40%,color-mix(in srgb, var(--bg-color), black 40%) 70%,color-mix(in srgb, var(--bg-color), black 80%) 100%)");
-            this.button.style.setProperty("border","1px solid dimgray");
+            this.button.classList.toggle("pick");
+            this.button.classList.toggle("picked");
         }
         this.color = (this.color+1)%colors.length;
         this.button.style.setProperty("--bg-color",colors[this.color]);
@@ -27,10 +27,10 @@ const confirm = document.querySelector("#confirm");
 const info = document.querySelector(".info");
 const warning = document.querySelector(".warning");
 
-confirm.addEventListener("click",(e) => makeGuess());
-
 let guessno = 1;
 let answer = [];
+
+confirm.addEventListener("click",(e) => makeGuess());
 
 function startGame() {
     for(let i=0;i<4;i++) {
@@ -45,6 +45,30 @@ function shufflePins(array) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
+}
+
+function getFeedback(secretCode, guess) {
+    let blackPegs = 0;
+    let whitePegs = 0;
+  
+    const secret = [...secretCode];
+    const guessCopy = [...guess];
+
+    for (let i = 0; i < secret.length; i++) {
+        if (guessCopy[i] === secret[i]) {
+            blackPegs++;
+            secret[i] = guessCopy[i] = null;
+        }
+    }
+
+    for (let i = 0; i < guessCopy.length; i++) {
+        if (guessCopy[i] !== null && secret.includes(guessCopy[i])) {
+            whitePegs++;
+            secret[secret.indexOf(guessCopy[i])] = null;
+        }
+    }
+
+    return { blackPegs, whitePegs };
 }
 
 function makeGuess() {
@@ -62,27 +86,42 @@ function makeGuess() {
     let pinsOrder = [pins.childNodes.item(1),pins.childNodes.item(3),pins.childNodes.item(5),pins.childNodes.item(7)];
     shufflePins(pinsOrder);
 
-    for([i,g] of guesses.entries()) {
+    for(g of guesses) {
         const pick = document.createElement("div");
-        pick.classList.add("pick");
+        pick.classList.add("picked");
         pick.style.setProperty("--bg-color",colors[g.color]);
         tile.appendChild(pick);
     }
 
-    for([i,c] of answer.entries()) {
-        if(c === colors[guesses[i].color]) {
-            pinsOrder[i].classList.add("answer-pin");
-            pinsOrder[i].style.setProperty("--bg-color","black");
-        }
-        else if(guessedColors.includes(c)) {
-            pinsOrder[i].classList.add("answer-pin");
-            pinsOrder[i].style.setProperty("--bg-color","white");
-        }
+    let feedback = getFeedback(answer,guessedColors);
+    let i = 0;
+    while(feedback.whitePegs > 0) {
+        pinsOrder[i].classList.add("answer-pin");
+        pinsOrder[i++].style.setProperty("--bg-color","white");
+        feedback.whitePegs -= 1;
+    }
+    while(feedback.blackPegs > 0) {
+        pinsOrder[i].classList.add("answer-pin");
+        pinsOrder[i++].style.setProperty("--bg-color","black");
+        feedback.blackPegs -= 1;
     }
 
     guessno += 1;
 
 }
+
+const getFormattedDate = () => {
+    const date = new Date();
+    
+    const day = date.getDate(); // Day of the month (1-31)
+    const month = date.toLocaleString('default', { month: 'long' }); // Full month name
+    const year = date.getFullYear(); // Year (e.g., 2024)
+
+    return `${day} ${month} ${year}`;
+};
+
+const date = document.querySelector(".date");
+date.textContent = getFormattedDate();
 
 startGame();
 
