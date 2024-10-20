@@ -155,14 +155,23 @@
     align-items: center;
     justify-content: flex-start;
     width: 20rem;
+    gap: 10px;
 }
 
 .tip {
     cursor: pointer;
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     border: none;
-    flex: 0 0 40px;
+    flex: 0 0 30px;
+    border-radius: 25%;
+    /* fill: black; */
+}
+
+.tip svg {
+    border-radius: inherit;
+    height: inherit;
+    width: inherit;
 }
 
 .footer {
