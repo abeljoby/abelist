@@ -53,8 +53,10 @@
 .game {
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
     gap: 1rem;
+    /* padding-top: 10%; */
 }
 
 .board {
@@ -172,6 +174,21 @@
     border-radius: inherit;
     height: inherit;
     width: inherit;
+}
+
+.result {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    max-width: 40rem;
+    width: 90%;
+    height: 25rem;
+    align-self: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 1px black;
 }
 
 .footer {
