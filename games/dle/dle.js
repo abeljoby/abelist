@@ -81,6 +81,16 @@ function getResults(secretCode, guess) {
     return { blackPegs, whitePegs };
 }
 
+function winState() {
+    setTimeout(() => {
+        const result = document.querySelector(".result");
+    }, 1000);
+}
+
+function loseState() {
+
+}
+
 function makeGuess() {
 
     for (g of guesses) {
@@ -108,6 +118,7 @@ function makeGuess() {
     }
 
     let feedback = getResults(answer,guessedColors);
+    const blackPins = feedback.blackPegs;
     let i = 0;
     while(feedback.whitePegs > 0) {
         pinsOrder[i].classList.add("answer-pin");
@@ -118,6 +129,13 @@ function makeGuess() {
         pinsOrder[i].classList.add("answer-pin");
         pinsOrder[i++].style.setProperty("--bg-color","black");
         feedback.blackPegs -= 1;
+    }
+
+    if (blackPins === 4) {
+        winState();
+    }
+    else if (guessno >= 7) {
+        loseState();
     }
 
     guessno += 1;
