@@ -81,8 +81,22 @@
 }
 
 .info {
-    overflow: hidden;
-    max-width: 75ch;
+    display: none;
+    position: fixed;
+    box-sizing: border-box;
+    z-index: 1;
+    background-color: white;
+    max-width: 40rem;
+    width: 90%;
+    max-height: 90%;
+    height: 25rem;
+    align-self: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 1px black;
+    /* overflow: hidden;
+    max-width: 75ch; */
 }
 
 .tile {

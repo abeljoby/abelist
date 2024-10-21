@@ -24,17 +24,28 @@ let guess4 = new guess(4);
 const guesses = [guess1,guess2,guess3,guess4];
 
 const confirm = document.querySelector("#confirm");
-const info = document.querySelector(".info");
 const warning = document.querySelector(".warning");
 
 let guessno = 1;
 let answer = [];
 
-confirm.addEventListener("click",(e) => makeGuess());
+confirm.addEventListener("click",makeGuess);
+
+function logKey(e) {
+    const regex = /Digit([1-4])/;
+    const digit = e.code.match(regex);
+    if (digit) {
+        guesses[digit[1]-1].button.click();
+    }
+    else if (e.code === "Enter") {
+        confirm.click();
+    }
+}
+
+document.addEventListener("keydown", logKey);
 
 const getFormattedDate = () => {
     const date = new Date();
-    
     const day = date.getDate(); // Day of the month (1-31)
     const month = date.toLocaleString('default', { month: 'long' }); // Full month name
     const year = date.getFullYear(); // Year (e.g., 2024)
@@ -84,11 +95,22 @@ function getResults(secretCode, guess) {
 function winState() {
     setTimeout(() => {
         const result = document.querySelector(".result");
-    }, 1000);
+        result.style.display = "flex";
+        confirm.removeEventListener("click",makeGuess);
+    }, 2000);
 }
 
 function loseState() {
+    setTimeout(() => {
+        const result = document.querySelector(".result");
+        result.style.display = "flex";
+        confirm.removeEventListener("click",makeGuess);
+    }, 2000);
+}
 
+function showInfo() {
+    info.style.display = "flex";
+    // confirm.removeEventListener("click",makeGuess);
 }
 
 function makeGuess() {
@@ -144,6 +166,9 @@ function makeGuess() {
 
 const date = document.querySelector(".date");
 date.textContent = getFormattedDate();
+
+const info = document.querySelector(".info");
+info.addEventListener("click",showInfo);
 
 startGame();
 
