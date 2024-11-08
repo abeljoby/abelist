@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mastermindle | abelist</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="/favicon/mdle-favicon-48x48.png" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/mdle-favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/mdle-favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/mdle-apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon/mdle-site.webmanifest" />
 </head>
 <body>
     <div class="page">
@@ -84,8 +89,32 @@
                 </div>
             </div>
         </div>
-        <div class="info">You need to guess the correct color combination. After each guess, you will see pins that indicate whether the guesses were in the correct position or color. You have 7 guesses to find the correct combination. Find the answer in as few guesses as possible!</div>
-        <div class="result"></div>
+        <div class="info" id="info">
+            <div class="info-header" id="info-header">
+                <h1>Instructions</h1>
+                <span id="close-info" class="close">&times;</span>
+            </div>
+            <div class="info-content" id="info-content">
+                <p>You need to guess the correct color combination by selecting the right color at each position. After each guess, you will see pins that indicate whether the guesses were in the correct position or color. </p>
+                <p><br>If the color code is: </p>
+                <p>eg. 1. The black pin indicates that one of the color pins that you have guessed is of the correct color and is in the right position.</p>
+                <p>eg. 2. The white pin indicates that one of the color pins that you have guessed is of the correct color but is in the wrong position.</p>
+                <p><br>You have 7 guesses to find the correct combination. Find the answer in as few guesses as possible!</p>
+            </div>
+        </div>
+        <div class="info" id="result">
+            <div class="info-header" id="result-header">
+                <h1>You won!</h1>
+                <span id="close-result" class="close">&times;</span>
+            </div>
+            <div class="info-content" id="result-content">
+                <p>You need to guess the correct color combination by selecting the right color at each position. After each guess, you will see pins that indicate whether the guesses were in the correct position or color. </p>
+                <p><br>If the color code is: </p>
+                <p>eg. 1. The black pin indicates that one of the color pins that you have guessed is of the correct color and is in the right position.</p>
+                <p>eg. 2. The white pin indicates that one of the color pins that you have guessed is of the correct color but is in the wrong position.</p>
+                <p><br>You have 7 guesses to find the correct combination. Find the answer in as few guesses as possible!</p>
+            </div>
+        </div>
         <div class="footer">Created by Abel Joby</div>
     </div>
     <script src="dle.js"></script>

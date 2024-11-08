@@ -25,11 +25,27 @@ const guesses = [guess1,guess2,guess3,guess4];
 
 const confirm = document.querySelector("#confirm");
 const warning = document.querySelector(".warning");
+const info = document.querySelector("#info");
+const infoclose = document.querySelector("#close-info");
+const result = document.querySelector("#result");
+const resultclose = document.querySelector("#close-result");
+const resultHeader = document.querySelector("#result-header h1");
 
 let guessno = 1;
 let answer = [];
 
 confirm.addEventListener("click",makeGuess);
+
+function closeInfo(e) {
+    info.style.display = "none";
+}
+
+function closeResult(e) {
+    result.style.display = "none";
+}
+
+infoclose.addEventListener("click",closeInfo);
+resultclose.addEventListener("click",closeResult);
 
 function logKey(e) {
     const regex = /Digit([1-4])/;
@@ -41,8 +57,6 @@ function logKey(e) {
         confirm.click();
     }
 }
-
-document.addEventListener("keydown", logKey);
 
 const getFormattedDate = () => {
     const date = new Date();
@@ -58,6 +72,9 @@ function startGame() {
         let colorCode = Math.floor(colors.length*Math.random());
         answer.push(colors[colorCode]);
     }
+    setTimeout(() => {
+        showInfo();
+    }, 1000);
     console.log(answer);
 }
 
@@ -94,7 +111,6 @@ function getResults(secretCode, guess) {
 
 function winState() {
     setTimeout(() => {
-        const result = document.querySelector(".result");
         result.style.display = "flex";
         confirm.removeEventListener("click",makeGuess);
     }, 2000);
@@ -102,7 +118,7 @@ function winState() {
 
 function loseState() {
     setTimeout(() => {
-        const result = document.querySelector(".result");
+        resultHeader.textContent = "You lost!";
         result.style.display = "flex";
         confirm.removeEventListener("click",makeGuess);
     }, 2000);
@@ -110,6 +126,11 @@ function loseState() {
 
 function showInfo() {
     info.style.display = "flex";
+    // confirm.removeEventListener("click",makeGuess);
+}
+
+function showResult() {
+    result.style.display = "flex";
     // confirm.removeEventListener("click",makeGuess);
 }
 
@@ -164,11 +185,12 @@ function makeGuess() {
 
 }
 
+document.addEventListener("keydown", logKey);
 const date = document.querySelector(".date");
 date.textContent = getFormattedDate();
 
-const info = document.querySelector(".info");
-info.addEventListener("click",showInfo);
+const tip = document.querySelector(".tip");
+tip.addEventListener("click",showInfo);
 
 startGame();
 
