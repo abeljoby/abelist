@@ -25,8 +25,8 @@ const guesses = [guess1,guess2,guess3,guess4];
 
 const confirm = document.querySelector("#confirm");
 const warning = document.querySelector(".warning");
-const info = document.querySelector("#info");
-const infoclose = document.querySelector("#close-info");
+const instruction = document.querySelector("#instructions");
+const instructionclose = document.querySelector("#close-instructions");
 const result = document.querySelector("#result");
 const resultclose = document.querySelector("#close-result");
 const resultHeader = document.querySelector("#result-header h1");
@@ -36,15 +36,15 @@ let answer = [];
 
 confirm.addEventListener("click",makeGuess);
 
-function closeInfo(e) {
-    info.style.display = "none";
+function closeInstruction(e) {
+    instruction.classList.remove("info-open");
 }
 
 function closeResult(e) {
-    result.style.display = "none";
+    result.classList.remove("info-open");
 }
 
-infoclose.addEventListener("click",closeInfo);
+instructionclose.addEventListener("click",closeInstruction);
 resultclose.addEventListener("click",closeResult);
 
 function logKey(e) {
@@ -72,9 +72,9 @@ function startGame() {
         let colorCode = Math.floor(colors.length*Math.random());
         answer.push(colors[colorCode]);
     }
-    setTimeout(() => {
-        showInfo();
-    }, 1000);
+    // setTimeout(() => {
+    //     showInstruction();
+    // }, 500);
     console.log(answer);
 }
 
@@ -111,26 +111,28 @@ function getResults(secretCode, guess) {
 
 function winState() {
     setTimeout(() => {
-        result.style.display = "flex";
+        result.classList.toggle("info-open");
         confirm.removeEventListener("click",makeGuess);
-    }, 2000);
+    }, 1000);
 }
 
 function loseState() {
     setTimeout(() => {
         resultHeader.textContent = "You lost!";
-        result.style.display = "flex";
+        result.classList.toggle("info-open");
         confirm.removeEventListener("click",makeGuess);
-    }, 2000);
+    }, 1000);
 }
 
-function showInfo() {
-    info.style.display = "flex";
+function showInstruction() {
+    instruction.classList.toggle("info-open");
+    // instruction.style.display = "flex";
     // confirm.removeEventListener("click",makeGuess);
 }
 
 function showResult() {
-    result.style.display = "flex";
+    result.classList.toggle("info-open");
+    // result.style.display = "flex";
     // confirm.removeEventListener("click",makeGuess);
 }
 
@@ -148,6 +150,8 @@ function makeGuess() {
     const pins = document.querySelector(`#answer${guessno}`);
     let pinsOrder = [pins.childNodes.item(1),pins.childNodes.item(3),pins.childNodes.item(5),pins.childNodes.item(7)];
     shufflePins(pinsOrder);
+    tile.classList.add("guessed");
+    tile.addEventListener("click",repeatGuess);
 
     for(g of guesses) {
         const pick = document.createElement("div");
@@ -185,12 +189,19 @@ function makeGuess() {
 
 }
 
+function repeatGuess() {
+    // console.log(this.className);
+    for(p of this.childNodes) {
+        
+    }
+}
+
 document.addEventListener("keydown", logKey);
 const date = document.querySelector(".date");
 date.textContent = getFormattedDate();
 
 const tip = document.querySelector(".tip");
-tip.addEventListener("click",showInfo);
+tip.addEventListener("click",showInstruction);
 
 startGame();
 

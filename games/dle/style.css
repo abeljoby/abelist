@@ -70,6 +70,7 @@
 }
 
 .board {
+    z-index: 0;
     flex: 0 0 auto;
     display: grid;
     grid-template-rows: repeat(8,4rem);
@@ -81,7 +82,8 @@
 }
 
 .info {
-    display: none;
+    opacity: 0;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     position: fixed;
@@ -97,10 +99,16 @@
     align-self: center;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(0,0) scale(0);
+    transform-origin: left bottom;
     border: solid 1px black;
-    /* overflow: hidden;
-    max-width: 75ch; */
+    transition: transform 300ms ease-in-out, opacity 300ms ease-in;
+}
+
+.info-open {
+    /* display: flex; */
+    opacity: 100%;
+    transform: translate(-50%,-50%) scale(1);
 }
 
 .info-header {
@@ -129,6 +137,10 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.guessed {
+    cursor: pointer;
 }
 
 .pick {
@@ -223,27 +235,6 @@
     border-radius: inherit;
     height: inherit;
     width: inherit;
-}
-
-.result {
-    display: none;
-    position: fixed;
-    box-sizing: border-box;
-    z-index: 1;
-    background-color: white;
-    max-width: 40rem;
-    width: 90%;
-    max-height: 90%;
-    height: 25rem;
-    align-self: center;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: solid 1px black;
-}
-
-.result-content {
-    display: flex;
 }
 
 .footer {
