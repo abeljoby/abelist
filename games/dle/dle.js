@@ -191,8 +191,12 @@ function makeGuess() {
 
 function repeatGuess() {
     // console.log(this.className);
-    for(p of this.childNodes) {
-        
+    for([i,p] of this.childNodes.entries()) {
+        let colored = p.style.getPropertyValue("--bg-color");
+        guesses[i].color = colors.indexOf(colored);
+        guesses[i].button.style.setProperty("--bg-color",colored);
+        guesses[i].button.classList.remove("pick");
+        guesses[i].button.classList.add("picked");
     }
 }
 
