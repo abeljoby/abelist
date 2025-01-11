@@ -146,6 +146,11 @@
     align-items: center;
 }
 
+.answer-tile {
+    aspect-ratio: 4/1;
+    width: 50%;
+}
+
 .guessed {
     cursor: pointer;
 }

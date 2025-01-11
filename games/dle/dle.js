@@ -36,6 +36,9 @@ const result = document.querySelector("#result");
 const resultclose = document.querySelector("#close-result");
 const resultHeader = document.querySelector("#result-header h1");
 const resultText = document.querySelector("#result-content p");
+const resultContent = document.querySelector("#result-content");
+
+const answerTile = document.createElement("div");
 
 let guessno = 1;
 let answer = [];
@@ -77,13 +80,18 @@ const getFormattedDate = () => {
 };
 
 function startGame() {
-    // for(let i=0;i<4;i++) {
-    //     let colorCode = Math.floor(colors.length*Math.random());
-    //     answer.push(colors[colorCode]);
-    // }
-    answer = ["red","white","black","gold"];
-    console.log(document.cookie);
-
+    answerTile.classList.add("tile");
+    answerTile.classList.add("answer-tile");
+    for(let i=0;i<4;i++) {
+        let colorCode = Math.floor(colors.length*Math.random());
+        answer.push(colors[colorCode]);
+        const pick = document.createElement("div");
+        pick.classList.add("picked");
+        pick.style.setProperty("--bg-color",colors[colorCode]);
+        answerTile.appendChild(pick);
+    }
+    // answer = ["red","white","black","gold"];
+    // console.log(document.cookie);
     if(!document.cookie) {
         setTimeout(() => {
             showInstruction();
@@ -126,7 +134,7 @@ function getResults(secretCode, guess) {
 
 function winState() {
     setTimeout(() => {
-        resultText.textContent = `Congratulations! You got the answer in ${guessno} guesses!`;
+        resultText.textContent = `Congratulations! You got the answer in ${guessno-1} guesses!`;
         result.classList.toggle("info-open");
         confirm.removeEventListener("click",makeGuess);
     }, 2500);
@@ -136,6 +144,7 @@ function loseState() {
     setTimeout(() => {
         resultHeader.textContent = "You lost!";
         resultText.textContent = "You have run out of guesses. The correct answer was:";
+        resultContent.appendChild(answerTile);
         result.classList.toggle("info-open");
         confirm.removeEventListener("click",makeGuess);
     }, 2000);
