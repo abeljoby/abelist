@@ -18,6 +18,7 @@ class guess {
         }
         this.color = (this.color+1)%colors.length;
         this.button.style.setProperty("--bg-color",colors[this.color]);
+        this.blur();
     }
 }
 
@@ -52,7 +53,8 @@ instructionclose.addEventListener("click",closeInstruction);
 resultclose.addEventListener("click",closeResult);
 
 function logKey(e) {
-    const regex = /Digit([1-4])/;
+    console.log(e.code);
+    const regex = /(?:Digit|Numpad)([1-4])/;
     const digit = e.code.match(regex);
     if (digit) {
         guesses[digit[1]-1].button.click();
@@ -117,7 +119,7 @@ function winState() {
     setTimeout(() => {
         result.classList.toggle("info-open");
         confirm.removeEventListener("click",makeGuess);
-    }, 1000);
+    }, 2500);
 }
 
 function loseState() {
@@ -125,7 +127,7 @@ function loseState() {
         resultHeader.textContent = "You lost!";
         result.classList.toggle("info-open");
         confirm.removeEventListener("click",makeGuess);
-    }, 1000);
+    }, 2000);
 }
 
 function showInstruction() {
@@ -172,16 +174,16 @@ function makeGuess() {
     const blackPins = feedback.blackPegs;
     let i = 0;
     setTimeout(() => {
-        while(feedback.whitePegs > 0) {
-            pinsOrder[i].classList.add("answer-pin");
-            pinsOrder[i++].style.setProperty("--bg-color","white");
-            feedback.whitePegs -= 1;
-        }
-        while(feedback.blackPegs > 0) {
-            pinsOrder[i].classList.add("answer-pin");
-            pinsOrder[i++].style.setProperty("--bg-color","black");
-            feedback.blackPegs -= 1;
-        }
+        const addPin = (color, count) => {
+            if (count > 0) {
+                pinsOrder[i].classList.add("answer-pin");
+                pinsOrder[i++].style.setProperty("--bg-color", color);
+                setTimeout(() => addPin(color, count - 1), 400);
+            }
+        };
+
+        addPin("white", feedback.whitePegs);
+        setTimeout(() => addPin("black", feedback.blackPegs), feedback.whitePegs * 400);
     }, 600);
 
     if (blackPins === 4) {

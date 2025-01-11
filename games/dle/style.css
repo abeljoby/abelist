@@ -235,13 +235,23 @@
 }
 
 .tip {
+    box-sizing: border-box;
     cursor: pointer;
-    height: 30px;
-    width: 30px;
+    height: 35px; /* Increased size */
+    width: 35px;  /* Increased size */
+    border-radius: 25%; /* Adjusted for better visuals */
     border: none;
-    flex: 0 0 30px;
-    border-radius: 25%;
-    /* fill: black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tip:hover {
+    border: #000 2px solid;
+}
+
+.tip:hover svg {
+    filter: invert(1);
 }
 
 .tip svg {
