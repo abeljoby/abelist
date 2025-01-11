@@ -94,8 +94,8 @@
     color: black;
     max-width: 40rem;
     width: 90%;
-    max-height: 90%;
-    height: 25rem;
+    max-height: 75%;
+    height: auto;
     align-self: center;
     left: 50%;
     top: 50%;
@@ -125,10 +125,17 @@
 }
 
 .info-content {
+    display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
     padding: 1rem;
     overflow-y: auto;
+}
+
+.instructions-example {
+    width: 50%;
 }
 
 .tile {

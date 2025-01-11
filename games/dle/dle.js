@@ -35,6 +35,7 @@ const instructionclose = document.querySelector("#close-instructions");
 const result = document.querySelector("#result");
 const resultclose = document.querySelector("#close-result");
 const resultHeader = document.querySelector("#result-header h1");
+const resultText = document.querySelector("#result-content p");
 
 let guessno = 1;
 let answer = [];
@@ -53,7 +54,6 @@ instructionclose.addEventListener("click",closeInstruction);
 resultclose.addEventListener("click",closeResult);
 
 function logKey(e) {
-    // console.log(e.code);
     const regex = /(?:Digit|Numpad)([1-4])/;
     const digit = e.code.match(regex);
     if (digit) {
@@ -61,6 +61,9 @@ function logKey(e) {
     }
     else if (e.code === "Enter") {
         confirm.click();
+    }
+    else if (e.code === "KeyI") {
+        showInstruction();
     }
 }
 
@@ -74,10 +77,11 @@ const getFormattedDate = () => {
 };
 
 function startGame() {
-    for(let i=0;i<4;i++) {
-        let colorCode = Math.floor(colors.length*Math.random());
-        answer.push(colors[colorCode]);
-    }
+    // for(let i=0;i<4;i++) {
+    //     let colorCode = Math.floor(colors.length*Math.random());
+    //     answer.push(colors[colorCode]);
+    // }
+    answer = ["red","white","black","gold"];
     console.log(document.cookie);
 
     if(!document.cookie) {
@@ -122,6 +126,7 @@ function getResults(secretCode, guess) {
 
 function winState() {
     setTimeout(() => {
+        resultText.textContent = `Congratulations! You got the answer in ${guessno} guesses!`;
         result.classList.toggle("info-open");
         confirm.removeEventListener("click",makeGuess);
     }, 2500);
@@ -130,6 +135,7 @@ function winState() {
 function loseState() {
     setTimeout(() => {
         resultHeader.textContent = "You lost!";
+        resultText.textContent = "You have run out of guesses. The correct answer was:";
         result.classList.toggle("info-open");
         confirm.removeEventListener("click",makeGuess);
     }, 2000);
@@ -148,7 +154,6 @@ function showResult() {
 }
 
 function makeGuess() {
-
     for (g of guesses) {
         if(g.color === -1) {
             warning.textContent = "Please select a colour!";
