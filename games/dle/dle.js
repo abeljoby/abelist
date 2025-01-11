@@ -18,7 +18,7 @@ class guess {
         }
         this.color = (this.color+1)%colors.length;
         this.button.style.setProperty("--bg-color",colors[this.color]);
-        this.blur();
+        this.button.blur();
     }
 }
 
@@ -53,7 +53,7 @@ instructionclose.addEventListener("click",closeInstruction);
 resultclose.addEventListener("click",closeResult);
 
 function logKey(e) {
-    console.log(e.code);
+    // console.log(e.code);
     const regex = /(?:Digit|Numpad)([1-4])/;
     const digit = e.code.match(regex);
     if (digit) {
@@ -78,9 +78,14 @@ function startGame() {
         let colorCode = Math.floor(colors.length*Math.random());
         answer.push(colors[colorCode]);
     }
-    // setTimeout(() => {
-    //     showInstruction();
-    // }, 500);
+    console.log(document.cookie);
+
+    if(!document.cookie) {
+        setTimeout(() => {
+            showInstruction();
+        }, 500);
+        document.cookie = "instruction=true";
+    }
     console.log(answer);
 }
 
@@ -184,7 +189,7 @@ function makeGuess() {
 
         addPin("white", feedback.whitePegs);
         setTimeout(() => addPin("black", feedback.blackPegs), feedback.whitePegs * 400);
-    }, 600);
+    }, 800);
 
     if (blackPins === 4) {
         winState();
