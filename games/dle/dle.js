@@ -11,6 +11,10 @@ class guess {
         if(this.color === -1) {
             this.button.classList.toggle("pick");
             this.button.classList.toggle("picked");
+        } else {
+            this.button.classList.remove("picked");
+            void this.button.offsetWidth; // Trigger reflow to restart the animation
+            this.button.classList.add("picked");
         }
         this.color = (this.color+1)%colors.length;
         this.button.style.setProperty("--bg-color",colors[this.color]);
@@ -167,16 +171,18 @@ function makeGuess() {
     let feedback = getResults(answer,guessedColors);
     const blackPins = feedback.blackPegs;
     let i = 0;
-    while(feedback.whitePegs > 0) {
-        pinsOrder[i].classList.add("answer-pin");
-        pinsOrder[i++].style.setProperty("--bg-color","white");
-        feedback.whitePegs -= 1;
-    }
-    while(feedback.blackPegs > 0) {
-        pinsOrder[i].classList.add("answer-pin");
-        pinsOrder[i++].style.setProperty("--bg-color","black");
-        feedback.blackPegs -= 1;
-    }
+    setTimeout(() => {
+        while(feedback.whitePegs > 0) {
+            pinsOrder[i].classList.add("answer-pin");
+            pinsOrder[i++].style.setProperty("--bg-color","white");
+            feedback.whitePegs -= 1;
+        }
+        while(feedback.blackPegs > 0) {
+            pinsOrder[i].classList.add("answer-pin");
+            pinsOrder[i++].style.setProperty("--bg-color","black");
+            feedback.blackPegs -= 1;
+        }
+    }, 600);
 
     if (blackPins === 4) {
         winState();

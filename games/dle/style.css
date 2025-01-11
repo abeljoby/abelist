@@ -165,6 +165,7 @@
     border: 2px solid dimgray;
     width: calc(65%/4);
     height: 65%;
+    animation: pin 300ms ease-in-out;
 }
 
 .picker {
@@ -196,6 +197,18 @@
     color-mix(in srgb, var(--bg-color), black 80%) 100%
     );
     border: none;
+    animation: pin 300ms ease-in-out;
+}
+
+@keyframes pin {
+    0% {
+        /* opacity: 0; */
+        transform: scale(1.1);
+    }
+    100% {
+        /* opacity: 1; */
+        transform: scale(1);
+    }
 }
 
 #confirm-container {
