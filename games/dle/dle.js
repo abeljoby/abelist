@@ -68,6 +68,10 @@ function logKey(e) {
     else if (e.code === "KeyI") {
         showInstruction();
     }
+    else if (e.code === "Escape") {
+        closeInstruction();
+        closeResult();
+    }
 }
 
 const getFormattedDate = () => {
