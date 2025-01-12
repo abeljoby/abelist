@@ -118,10 +118,32 @@
 }
 
 .close {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #000;
-    cursor: pointer;
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    opacity: 0.3;
+}
+.close:hover {
+    opacity: 1;
+}
+.close:before, .close:after {
+    position: absolute;
+    content: ' ';
+    height: 2rem;
+    width: 0.25rem;
+    top: 50%;
+    left: 50%;
+    background-color: #333;
+    transform-origin: center;
+    transform: translate(-50%, -50%) rotate(0deg); /* Translate ensures centering */
+}
+
+.close::before {
+    transform: translate(-50%, -50%) rotate(45deg); /* Rotated to form the "X" */
+}
+
+.close::after {
+    transform: translate(-50%, -50%) rotate(-45deg); /* Opposite rotation */
 }
 
 .info-content {
