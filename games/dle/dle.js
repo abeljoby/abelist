@@ -139,7 +139,7 @@ function getResults(secretCode, guess) {
 function winState() {
     setTimeout(() => {
         resultText.textContent = `Congratulations! You got the answer in ${guessno-1} guesses!`;
-        result.classList.toggle("info-open");
+        showResult();
         confirm.removeEventListener("click",makeGuess);
     }, 2500);
 }
@@ -149,21 +149,17 @@ function loseState() {
         resultHeader.textContent = "You lost!";
         resultText.textContent = "You have run out of guesses. The correct answer was:";
         resultContent.appendChild(answerTile);
-        result.classList.toggle("info-open");
+        showResult();
         confirm.removeEventListener("click",makeGuess);
     }, 2000);
 }
 
 function showInstruction() {
     instruction.classList.toggle("info-open");
-    // instruction.style.display = "flex";
-    // confirm.removeEventListener("click",makeGuess);
 }
 
 function showResult() {
     result.classList.toggle("info-open");
-    // result.style.display = "flex";
-    // confirm.removeEventListener("click",makeGuess);
 }
 
 function makeGuess() {

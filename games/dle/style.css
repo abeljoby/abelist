@@ -82,8 +82,8 @@
 }
 
 .info {
-    opacity: 0;
     display: flex;
+    visibility: hidden;
     flex-direction: column;
     justify-content: flex-start;
     position: fixed;
@@ -102,12 +102,11 @@
     transform: translate(0,0) scale(0);
     transform-origin: left bottom;
     border: solid 1px black;
-    transition: transform 300ms ease-in-out, opacity 300ms ease-in;
+    transition: transform 300ms ease-in-out, visibility 300ms ease;
 }
 
 .info-open {
-    /* display: flex; */
-    opacity: 100%;
+    visibility: visible;
     transform: translate(-50%,-50%) scale(1);
 }
 
@@ -144,6 +143,10 @@
 
 .close::after {
     transform: translate(-50%, -50%) rotate(-45deg); /* Opposite rotation */
+}
+
+#result {
+    transform-origin: 0 0;
 }
 
 .info-content {
