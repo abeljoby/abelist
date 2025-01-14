@@ -139,6 +139,7 @@ function getResults(secretCode, guess) {
 function winState() {
     setTimeout(() => {
         resultText.textContent = `Congratulations! You got the answer in ${guessno-1} guesses!`;
+        resultContent.appendChild(answerTile);
         showResult();
         confirm.removeEventListener("click",makeGuess);
     }, 2500);
