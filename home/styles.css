@@ -1,0 +1,125 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  /* 2. Remove default margin */
+  * {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+  }
+  
+  body {
+    /* 3. Add accessible line-height */
+    line-height: 1.5;
+    /* 4. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+    overflow-x: auto;
+  }
+  
+  /* 5. Improve media defaults */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* 6. Inherit fonts for form controls */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  
+  /* 7. Avoid text overflows */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  
+  /* 8. Improve line wrapping */
+  p {
+    text-wrap: pretty;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+  
+  /*
+    9. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+
+  /* Custom CSS */
+
+* {
+    background-color: antiquewhite;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 1rem; */
+}
+
+header h1 {
+    position: absolute;
+    left: 1rem;
+    padding-right: 5vw;
+    user-select: none;
+}
+
+header nav {
+}
+
+header a {
+    display:inline-block;
+    text-decoration: none;
+    color: black;
+    padding: 2vh 5vw;
+    border-bottom: 2px solid;
+}
+
+header a:hover {
+    background-color: black;
+    color: antiquewhite;
+    transition: transform 100ms ease-in-out;
+    transform: scale(1.05);
+}
+
+section {
+    margin: 2rem;
+    border-left: 2px solid;
+    padding: 2em;
+}
+
+h1 a, h2 a {
+    text-decoration: none;
+    color: black;
+}
+
+h1 a:hover, h2 a:hover {
+    text-decoration: underline;
+}
+
+article {
+    /* border: 2px solid; */
+    padding: 1em 3em;
+}
+
+/* Media queries at width 750px and 450px */
+
+@media (max-width: 750px) {
+    header h1 {
+        position: inherit;
+    }
+}
+
+@media (max-width: 450px) {
+    nav {
+        visibility: collapse;
+    }
+    header h1 {
+        position: absolute;
+        padding-top: 2vh;
+    }
+}
