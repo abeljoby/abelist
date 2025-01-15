@@ -5,7 +5,7 @@
   
   /* 2. Remove default margin */
   * {
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:'Franklin Gothic Medium', Arial, sans-serif;
     margin: 0;
   }
   
@@ -54,40 +54,79 @@
     background-color: antiquewhite;
 }
 
-header {
+/* header {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding: 1rem; */
+    padding: 1rem;
 }
 
 header h1 {
-    position: absolute;
-    left: 1rem;
-    padding-right: 5vw;
-    user-select: none;
+  position: absolute;
+  left: 1em;
+  padding-right: 5vw;
+  user-select: none;
 }
 
 header nav {
+  display: flex;
+  flex-shrink: 1;
 }
 
-header a {
-    display:inline-block;
-    text-decoration: none;
-    color: black;
-    padding: 2vh 5vw;
-    border-bottom: 2px solid;
+nav a {
+  flex: 1;
+  display:inline-block;
+  text-decoration: none;
+  color: black;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid;
 }
 
-header a:hover {
+nav a:hover {
     background-color: black;
     color: antiquewhite;
     transition: transform 100ms ease-in-out;
     transform: scale(1.05);
+} */
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header h1 {
+  position: absolute;
+  left: 1em;
+  padding-right: 5vw;
+  user-select: none;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.5em;
+}
+
+nav a {
+  flex: 1; /* Flex-grow, flex-shrink, and flex-basis in one */
+  text-decoration: none;
+  color: black;
+  padding: 1em 3em; /* Adjust padding for smaller screens */
+  text-align: center;
+  border-bottom: 2px solid;
+  box-sizing: border-box; /* Ensure padding doesn’t overflow */
+}
+
+nav a:hover {
+  background-color: black;
+  color: antiquewhite;
+  transition: transform 100ms ease-in-out;
+  transform: scale(1.05);
 }
 
 section {
-    margin: 2rem;
+    margin: 2em;
     border-left: 2px solid;
     padding: 2em;
 }
@@ -106,12 +145,34 @@ article {
     padding: 1em 3em;
 }
 
+.project-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+}
+
+.github-link {
+  flex-shrink: 0;
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+}
+
+/* a:hover svg {
+  filter: invert(1);
+} */
+
 /* Media queries at width 750px and 450px */
 
 @media (max-width: 750px) {
-    header h1 {
-        position: inherit;
-    }
+  nav {
+    width: 100%;
+  }
+  header h1 {
+    padding-left: 1em;
+    position: inherit;
+  }
 }
 
 @media (max-width: 450px) {
@@ -120,6 +181,6 @@ article {
     }
     header h1 {
         position: absolute;
-        padding-top: 2vh;
+        /* padding-top: 1em; */
     }
 }
