@@ -152,6 +152,10 @@ article {
   margin: 1em;
 }
 
+.slideshow-container:hover *, .slideshow-container:active {
+  opacity: 100%;
+}
+
 /* Hide the images by default */
 .mySlides {
   display: none;
@@ -190,9 +194,9 @@ article {
   right: 0;
 }
 
-.prev:hover, .next:hover, .prev:active, .next:active {
+/* .prev:hover, .next:hover, .prev:active, .next:active {
   opacity: 100%;
-}
+} */
 
 .dots {
   text-align: center;
@@ -205,9 +209,9 @@ article {
   background: none;
 }
 
-.dots:hover, .dots:active {
+/* .dots:hover, .dots:active {
   opacity: 100%;
-}
+} */
 
 .dot {
   cursor: pointer;
