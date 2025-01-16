@@ -1,3 +1,2 @@
 RewriteEngine On
-RewriteCond %{REQUEST_URI} ^/$
-RewriteRule ^$ /home/ [L,R=302]
+ErrorDocument 404 /index.php
