@@ -147,8 +147,8 @@ article {
 
 /* Slideshow container */
 .slideshow-container {
-  width: 400px;
-  height: 400px;
+  width: 20rem;
+  height: 20rem;
   position: relative;
   margin: 1em;
 }

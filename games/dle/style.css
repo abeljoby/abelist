@@ -1,3 +1,22 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+
+/* Custom CSS */
+
 * {
     margin: 0;
     padding: 0;
@@ -14,41 +33,38 @@
     }
 }
 
-.page {
+body {
+    /* line-height: 1.5; */
     box-sizing: border-box;
     height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    -webkit-font-smoothing: antialiased;
 }
 
-.header {
+header {
+    /* min-height: 4rem; */
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1em;
+    padding: 1em;
+    /* line-height: 1.5; */
 }
 
-.header-item {
-    padding: 1rem;
+header span {
+    font-size: large;
 }
 
 .logo {
-    position: relative;
-    /* font-weight: bold; */
-}
-
-.logo:after {
-    font-weight: normal;
-    content: "";
-    background: black;
-    position: absolute;
-    right: 0; /* Align to the right edge */
-    top: 25%; /* Center vertically (start at 25%) */
-    height: 50%; /* Cover 50% of the height */
-    width: 0.05rem; /* Border thickness */
+    height: 3em;
 }
 
 .date {
-    padding-left: 0;
+    margin-left: auto;
+    font-size: medium;
 }
 
 .content {

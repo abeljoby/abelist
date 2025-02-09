@@ -31,11 +31,6 @@ p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
 }
 
-  /* 8. Improve line wrapping */
-p {
-    text-wrap: pretty;
-}
-
 h1, h2, h3, h4, h5, h6 {
     text-wrap: balance;
 }
@@ -58,7 +53,7 @@ body {
 }
 
 header {
-    min-height: 4rem;
+    /* min-height: 4rem; */
     display: flex;
     align-items: center;
     justify-content: flex-start;
