@@ -111,6 +111,7 @@ h1 a:hover, h2 a:hover, h1 a:active, h2 a:active {
 .projects {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 article {

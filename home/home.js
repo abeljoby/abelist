@@ -31,3 +31,4 @@ class Slideshow {
 // Usage example:
 const slideshow1 = new Slideshow(document.getElementById('focus-prep'));
 const slideshow2 = new Slideshow(document.getElementById('mastermindle'));
+const slideshow3 = new Slideshow(document.getElementById('memory'));
